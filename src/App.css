@@ -55,6 +55,9 @@
 
 .search-item {
   grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  margin: 1vh;
 }
 
 .main-item {
@@ -81,7 +84,27 @@
 }
 
 .searchbar:focus {
-  outline-width: 0;
+  outline: none;
+}
+
+.searchbutton {
+  font-family: "Anton", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: large;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 20px;
+  border-style: hidden;
+  margin-left: 1vh;
+  color: white;
+  background-color: #1f282f;
+  height: 55px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.searchbutton:hover {
+  background-color: #446075;
 }
 
 .read-the-docs {
