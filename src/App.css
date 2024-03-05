@@ -36,17 +36,15 @@
 .container {
   display: flex;
   justify-content: center;
-  height: 100%;
-  width: 100%;
 }
 
 .card {
   background-color: #9bcbd6;
   border-radius: 15px 15px 15px 15px;
-  padding: 20px;
+  padding: 2vh;
 
   display: grid;
-  grid-template-rows: 100px 500px;
+  grid-template-rows: 5vh 35vh;
   grid-template-columns: 3fr 1fr;
   grid-template-areas:
     "header header"
@@ -61,6 +59,7 @@
 }
 
 .main-item {
+  margin-top: 20px;
   grid-area: main;
 }
 
@@ -101,6 +100,7 @@
   background-color: #1f282f;
   height: 55px;
   border-radius: 20px 20px 20px 20px;
+  transition: 0.2s;
 }
 
 .searchbutton:hover {
@@ -124,4 +124,10 @@
   font-weight: 400;
   font-style: normal;
   font-size: 12vh;
+  margin-top: -3vh;
+}
+
+.mainicon {
+  font-size: 15vh;
+  margin-top: 2vh;
 }
