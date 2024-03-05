@@ -12,6 +12,7 @@ import {
   WiDayLightning,
   WiDaySnow,
   WiDayFog,
+  WiStrongWind,
 } from "react-icons/wi";
 
 function App() {
@@ -24,12 +25,22 @@ function App() {
           <input placeholder="Search for a city" className="searchbar"></input>
           <button className="searchbutton">Search</button>
         </div>
-        <div className="main-item">
-          <WiDaySunnyOvercast className="mainicon" />
-          <h1 className="degree">24</h1>
-          <h1 className="text">Istanbul</h1>
+        <div className="bodyitem">
+          <div className="main-item">
+            <WiDaySunnyOvercast className="mainicon" />
+            <h1 className="degree">24</h1>
+            <h1 className="text">Istanbul</h1>
+          </div>
+          <div className="side-item">
+            <WiStrongWind className="sideicon" />
+            <p className="sidetext">25km/h</p>
+
+            <WiStrongWind className="sideicon" />
+            <p className="sidetext">25km/h</p>
+            <WiStrongWind className="sideicon" />
+            <p className="sidetext">25km/h</p>
+          </div>
         </div>
-        <div className="side-item"></div>
       </div>
     </div>
   );
