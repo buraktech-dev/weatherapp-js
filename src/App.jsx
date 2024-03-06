@@ -19,16 +19,61 @@ import {
 import { FiCalendar, FiMapPin, FiSearch } from "react-icons/fi";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [location, setLocation] = useState("");
+  const [locationData, setLocationData] = useState({});
+  const API_KEY = "";
+
+  const getLocationCoords = async () => {
+    const coordResponse = await fetch(
+      "http://api.openweathermap.org/geo/1.0/direct?q=" +
+        "london" +
+        "&limit=1&appid=" +
+        API_KEY
+    );
+
+    if (coordResponse.ok) {
+      const jsonCoords = await coordResponse.json();
+      setLocationData({
+        country: jsonCoords[0].country,
+        lat: jsonCoords[0].lat,
+        name: jsonCoords[0].name,
+        lon: jsonCoords[0].lon,
+        state: jsonCoords[0].state,
+      });
+    }
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getWeatherDetails = async () => {
+    try {
+      const weatherResponse = await fetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLocation = (event) => {
+    event.preventDefault();
+    setLocation(event.target.value);
+  };
 
   return (
     <div className="flex flex-col gap-5 justify-center">
       <div className="flex flex-row items-center justify-center gap-3">
         <input
+          name="location"
+          value={location}
+          onChange={handleLocation}
           className="h-10 rounded-3xl bg-slate-500 p-5 w-full"
           placeholder="Search..."
         ></input>
-        <button className="rounded-3xl h-10 bg-teal-500">
+        <button
+          className="rounded-3xl h-10 bg-teal-500"
+          onClick={getLocationCoords}
+        >
           <FiSearch />
         </button>
       </div>
@@ -50,7 +95,7 @@ function App() {
               </div>
               <div className="flex items-center gap-3 mt-4">
                 <FiMapPin className="text-xl" />
-                <p>Vienna, Austria</p>
+                <p>{location}</p>
               </div>
             </div>
           </div>
