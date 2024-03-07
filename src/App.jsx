@@ -21,6 +21,7 @@ import { FiCalendar, FiMapPin, FiSearch } from "react-icons/fi";
 function App() {
   const [location, setLocation] = useState("");
   const [locationData, setLocationData] = useState({});
+  const [weatherData, setWeatherData] = useState({});
   const API_KEY = "";
 
   const getLocationCoords = async () => {
@@ -49,15 +50,46 @@ function App() {
 
   const getWeatherDetails = async () => {
     try {
-      const weatherResponse = await fetch();
+      const weatherResponse = await fetch(
+        "http://api.openweathermap.org/data/2.5/forecast?lat=" +
+          locationData.lat +
+          "&lon=" +
+          locationData.lon +
+          "&appid=" +
+          API_KEY
+      );
+
+      if (weatherResponse.ok) {
+        const jsonWeatherData = await weatherResponse.json();
+        setWeatherData({
+          temp: kelvinToCelcius(jsonWeatherData.main.temp),
+          feelslike: kelvinToCelcius(jsonWeatherData.main.feels_like),
+          tempmin: kelvinToCelcius(jsonWeatherData.main.temp_min),
+          tempmax: kelvinToCelcius(jsonWeatherData.main.temp_max),
+          pressure: jsonWeatherData.main.pressure,
+          humidity: jsonWeatherData.main.humidity,
+          visibility: jsonWeatherData.visibility,
+          windspeed: jsonWeatherData.wind.speed,
+          description: jsonWeatherData.weather[0].main,
+          icon: jsonWeatherData.weather[0].icon,
+          sunrise: jsonWeatherData.sys.sunrise,
+          sunset: jsonWeatherData.sys.sunset,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleSearch = () => {};
+
   const handleLocation = (event) => {
     event.preventDefault();
     setLocation(event.target.value);
+  };
+
+  const kelvinToCelcius = (kelvin) => {
+    return kelvin - 273.15;
   };
 
   return (
